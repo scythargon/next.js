@@ -55,7 +55,7 @@ module.exports = (context, opts = {}) => ({
       regenerator: true,
       ...opts['transform-runtime']
     }],
-    [require('styled-jsx/babel'), styledJsxOptions(opts['styled-jsx'])],
+    [process.env.NODE_ENV === 'test' ? require('styled-jsx/babel-test') : require('styled-jsx/babel'), styledJsxOptions(opts['styled-jsx'])],
     process.env.NODE_ENV === 'production' && require('babel-plugin-transform-react-remove-prop-types')
   ].filter(Boolean)
 })
